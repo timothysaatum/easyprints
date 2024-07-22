@@ -4,10 +4,12 @@ from django.views.generic.edit import FormView
 from .forms import FileUploadForm, TransactionForm
 from django.urls import reverse_lazy
 import pandas as pd
-from .models import PinCode
+from .models import PinCode, Payment
+import uuid
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class IndexView(TemplateView):
+class MakePaymentView(TemplateView):
     template_name = 'main/index.html'
 
 
@@ -27,11 +29,19 @@ class UploadFileView(FormView):
             pin, serial = row
             PinCode.objects.create(code_type=documnet_type,pin=pin, serial_number=serial)
 
-        return redirect('file-upload')
+        return super().form_valid(form)
 
 
-class MakePaymentView(FormView):
+class IndexView(FormView):
 
     form_class = TransactionForm
     template_name = 'main/index.html'
     success_url = reverse_lazy('home')
+
+    def form_valid(self, form):
+        phone = form.cleaned_data['pnone_number']
+        amount = 10000
+        reference = str(uuid.uuid4())
+        Payment.objects.create(phone_number=phone, amount=amount, reference=reference)
+
+        return redirect('home')

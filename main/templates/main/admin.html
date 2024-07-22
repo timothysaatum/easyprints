@@ -1,22 +1,56 @@
-{% extends 'main/base.html' %}
-{% load static %}
-{% load crispy_forms_tags %}
-
-
-{% block title %}File Upload{% endblock title %}
-
-
+{% extends 'main/base.html' %} 
+{% load static %} 
+{% load crispy_forms_tags %} 
+{% block title %}EasyPrints - Upload File{% endblock title %} 
 {% block content %}
-<div class="container">
-	<div class="mt-5 pt-5 mb-3">
-		<h1 class="text-capitalize text-success text-center">Upload Document</h1>
-		<form method="POST" enctype="multipart/form-data">
-		{% csrf_token %}
-		{{ form|crispy }}
-		<div class="text-center">
-			<button class="btn btn-success mb-5" type="submit">Upload document</button>
-		</div>
-	</form>
-	</div>
+<div id="sidebar" class="bg-dark">
+  <div class="sidebar-header text-center py-4">
+    <h3 class="text-white">EasyPrints</h3>
+  </div>
+  <ul class="nav flex-column">
+    <li class="nav-item">
+      <a class="nav-link active" href="#">Dashboard</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Users</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Products</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Orders</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Settings</a>
+    </li>
+  </ul>
+</div>
+
+<div id="content">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <button class="btn btn-primary" id="sidebarToggle">
+        <i class="bi bi-box-arrow-down-left"></i>
+      </button>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    <div class="container">
+      <div class="mt-5 pt-5 mb-3">
+        <h1 class="text-capitalize text-center">
+          Upload File
+        </h1>
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %} 
+          {{ form|crispy }}
+          <div class="text-center">
+            <button class="btn btn-light mb-5" type="submit">
+              Upload
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock content %}

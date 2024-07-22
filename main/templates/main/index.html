@@ -2,20 +2,22 @@
 {% load static %} {% load crispy_forms_tags %} 
 {% block title %}EasyPrints - Home{% endblock title %} 
 {% block content %}
-<div class="container">
-  <div class="mb-5">
-    <h1>Welcome to EasyPrints</h1>
+<div class="container mt-5">
+  <div class="mb-5" >
+    <h1 class="text-center">Welcome to EasyPrintz</h1>
   </div>
-  <div class="col-6 mx-auto">
-    <form method="POST">
+  <div class="col-6 mx-auto border rounded w-50 h-50 p-3 bg-body shadow">
+    <p class="text-center fs-2">Purchase and Payment Form</p>
+    <form method="POST" class="text-info">
         {% csrf_token %} 
         {{ form|crispy }}
         <div class="text-center">
-            <button class="btn btn-light mb-5" type="submit">
+            <button class="btn  btn-info mb-3 mt-3 px-5 border rounded" type="submit">
               Submit
             </button>
         </div>
     </form>
   </div>
+  <p class="text-center">About us</p>
 </div>
 {% endblock content %}

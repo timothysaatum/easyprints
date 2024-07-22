@@ -33,6 +33,10 @@ body {
     transition: background 0.3s, color 0.3s;
 }
 
+/*.background{
+    background-image: linear-gradient(to right top, #0dcaf0, #528dbc, #565577, #372a36, #000000);
+}
+*/
 .dropdown-item:hover {
     background: #3498db;
     color: #fff;

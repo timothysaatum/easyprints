@@ -7,6 +7,9 @@ import pandas as pd
 from .models import PinCode, Payment
 import uuid
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse
+from .utils import SendSms
+
 
 
 class MakePaymentView(TemplateView):
@@ -17,7 +20,7 @@ class UploadFileView(FormView):
 
     template_name = 'main/admin.html'
     form_class = FileUploadForm
-    sucess_url = reverse_lazy('file-upload')
+    success_url = reverse_lazy('file-upload')
 
     def form_valid(self, form):
 
@@ -39,9 +42,20 @@ class IndexView(FormView):
     success_url = reverse_lazy('home')
 
     def form_valid(self, form):
+
         phone = form.cleaned_data['pnone_number']
+        quantity = form.cleaned_data['quantity']
+        code_type = PinCode.objects.filter(code_type=form.cleaned_data['code_type'], is_used=False).first()
+
         amount = 10000
         reference = str(uuid.uuid4())
-        Payment.objects.create(phone_number=phone, amount=amount, reference=reference)
+
+        Payment.objects.create(phone_number=phone, amount=amount, quantity=quantity, reference=reference)
+
+        code_sender = SendSms()
+        recipients = [phone]
+
+        message = f'Pin code:{code_type.pin}, serial_number:{code_type.serial_number}'
+        code_sender.send_code(recipients, message, sender=None)
 
         return redirect('home')

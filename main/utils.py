@@ -30,6 +30,8 @@ headers = {
         'Authorization': f'Bearer {'key'}',
         'Content-Type': 'application/json'
     }
+
+
 def initialize_payment(amount, email):
     amount = int(amount) * 1000
     headers = {

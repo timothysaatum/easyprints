@@ -60,14 +60,14 @@ def verify_payment(reference):
     response = requests.post(f'https://api.paystack.co/transaction/verify{reference}', headers=headers)
     response_data = response.json()
 
-    if response_data['status']:
-        pay = Payment.objects.get(reference=reference)
-        if response_data['data']['status'] == 'success':
-            pay.is_successful = True
-            pay.save()
-            return JsonResponse({'message': 'Payment verified successfully'})
+    # if response_data['status']:
+    #     pay = Payment.objects.get(reference=reference)
+    #     if response_data['data']['status'] == 'success':
+    #         pay.is_successful = True
+    #         pay.save()
+    #         return JsonResponse({'message': 'Payment verified successfully'})
 
-        return JsonResponse({'message': 'Verification failed'})
+    #     return JsonResponse({'message': 'Verification failed'})
 
-    else:
-        return JsonResponse({'message': response_data['message']})
+    # else:
+    #     return JsonResponse({'message': response_data['message']})

@@ -1,5 +1,6 @@
 body {
     font-family: 'Roboto', sans-serif;
+    
 }
 
 
@@ -20,7 +21,7 @@ body {
 }
 
 .nav-link:hover {
-    color: #3498db !important;
+    color: #020202 !important;
 }
 
 .nav-item.dropdown .dropdown-menu {
@@ -28,11 +29,13 @@ body {
     border: none;
 }
 
-.dropdown-item {
-    color: #ecf0f1;
-    transition: background 0.3s, color 0.3s;
+.card{
+transition: all 0.3s;
 }
 
+.card:hover{
+transform: scale(1.15);
+}
 
 
 

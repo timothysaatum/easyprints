@@ -8,7 +8,7 @@ from .models import PinCode, Payment
 import uuid
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
-from .utils import SendSms
+from .utils import SendSms,initialize_payment, verify_payment
 from django.conf import settings
 
 
@@ -44,7 +44,7 @@ class IndexView(FormView):
 
     def form_valid(self, form):
 
-        phone = form.cleaned_data['pnone_number']
+        phone = form.cleaned_data['phone_number']
         quantity = form.cleaned_data['quantity']
         code_type = PinCode.objects.filter(code_type=form.cleaned_data['code_type'], is_used=False).first()
 
@@ -52,7 +52,8 @@ class IndexView(FormView):
         reference = str(uuid.uuid4())
 
         Payment.objects.create(phone_number=phone, amount=amount, quantity=quantity, reference=reference)
-
+        initialize_payment(amount, 'tsaatum@outlook.com')
+        verify_payment(reference)
         code_sender = SendSms()
         recipients = [phone]
 

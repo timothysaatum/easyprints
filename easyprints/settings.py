@@ -104,8 +104,11 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 # Africastalking settings.py
 SENDER_ID = 'Easyprintz24'
-USERNAME = 'timothysaatum@gmail.com'
+USERNAME = 'sandbox'
 API_KEY = 'atsk_2dec6c8152bd66eaf3cb04b8662ea340d74a532124d791e2f38627fdda9d3cda8b03c484'
+
+PAYSTACK_TEST_SECRET = 'sk_test_d2e0d24a1f088a46e41546829754fc1dd9b928bf'
+PAYSTACK_PUBLIC_KEY = 'pk_test_abd988ba73f917849d708d6a2df5d5a1770e21e4'
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 

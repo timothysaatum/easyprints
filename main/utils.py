@@ -16,10 +16,11 @@ class SendSms:
         africastalking.initialize(self.username, self.api_key)
         self.sms = africastalking.SMS
 
-    def send_code(self, recipients, message, sender=None):
+    def send_code(self, recipients, message, sender):
 
         try:
-            response = self.sms.send(message, recipients)
+            response = self.sms.send(message, recipients, sender)
+            # print(response)
             return response
 
         except Exception as e:
@@ -27,29 +28,26 @@ class SendSms:
 
 
 headers = {
-        'Authorization': f'Bearer {'key'}',
+        'Authorization': f'Bearer {settings.PAYSTACK_TEST_SECRET}',
         'Content-Type': 'application/json'
     }
 
 
 def initialize_payment(amount, email):
-    amount = int(amount) * 1000
-    headers = {
-        'Authorization': f'Bearer {'key'}',
-        'Content-Type': 'application/json'
-    }
+    amount = int(amount) * 100
 
     data = {
         'email': email,
         'amount': amount,
+        'currency': 'GHS',
         'channels': ['mobile_money', 'ussd']
     }
 
     response = requests.post('https://api.paystack.co/transaction/initialize', headers=headers, json=data)
     response_data = response.json()
-
+    print(response_data)
     if response_data['status']:
-        Payment.objects.create()
+        # Payment.objects.create()
         return JsonResponse(response_data['data'])
 
     else:

@@ -1,7 +1,7 @@
 from django.db import models
 
 CODE_TYPE = [
-    ('WASSCE, OLD WASSCE, SSCE', 'WASSCE, OLD WASSCE, SSCE'),
+    ('WASSCE', 'WASSCE'),
     ('BECE', 'BECE'),
     ('SHS PLACEMENT CODES', 'SHS PLACEMENT CODES')
 
@@ -19,8 +19,9 @@ class PinCode(models.Model):
 
 class Payment(models.Model):
 
-    phone_number = models.CharField(max_length=10)
+    phone_number = models.CharField(max_length=15)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
+    quantity = models.PositiveSmallIntegerField()
     reference = models.CharField(max_length=100, unique=True)
     is_successful = models.BooleanField(default=False)
 

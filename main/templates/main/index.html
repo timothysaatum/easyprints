@@ -2,60 +2,20 @@
 {% load static %} {% load crispy_forms_tags %} 
 {% block title %}EasyPrints - Home{% endblock title %} 
 {% block content %}
-<div class="container mt-5">
-  <div class="mb-5" >
-    <h2 class="text-center ">Welcome to <span class="text-info">EasyPrintz</span></h2>
-    <p class="text-center">We ensure a <span class="text-info">quick and stress-free experience</span> for purchasing and verifying your <span class="text-info">WASSCE/BECE</span> results. Just enjoy the process</p>
+<div class="container">
+  <div class="mb-5">
+    <h1>Welcome to EasyPrints</h1>
   </div>
-
-  <div>
-    <h4 class="text-center mt-5 mb-4">WHAT WE  <span class="text-info">SEll in our store </span>
-    </h4>
-    
-    <div class="row mt-5 mb-5">
-      <div class="col-sm-4 mb-3 mb-sm-0 mb-5">
-        <div class="card bg-black">
-          <div class="card-body">
-            <h5 class="card-title text-light">GET WASSCE RESULT CHECKER</h5>
-            <p class="card-text text-light">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">BUY NOW</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-4 mb-3 mb-sm-0">
-        <div class="card bg-light">
-          <div class="card-body">
-            <h5 class="card-title text-dark">GET BECE RESULT CHECKER</h5>
-            <p class="card-text text-dark">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">BUY NOW</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">SCHOOL PLACEMENT</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">BUY NOW</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    </div>
-  
-  <div class="col-6 mx-auto border rounded w-50 h-50 p-3 bg-body shadow mt-5">
-    <p class="text-center fs-2">Purchase and Payment Form</p>
-    <form method="POST" class="text-info">
+  <div class="col-5 mx-auto">
+    <form method="POST">
         {% csrf_token %} 
         {{ form|crispy }}
         <div class="text-center">
-            <button class="btn  btn-info mb-3 mt-3 px-5 border rounded" type="submit">
+            <button class="btn btn-light mb-5" type="submit">
               Submit
             </button>
         </div>
     </form>
   </div>
-  <p class="text-center">About us</p>
 </div>
 {% endblock content %}

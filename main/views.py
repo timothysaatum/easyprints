@@ -6,8 +6,6 @@ from django.urls import reverse_lazy
 import pandas as pd
 from .models import PinCode, Payment
 import uuid
-from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from .utils import SendSms,initialize_payment, verify_payment
@@ -24,10 +22,6 @@ class UploadFileView(FormView):
     template_name = 'main/admin.html'
     form_class = FileUploadForm
     success_url = reverse_lazy('file-upload')
-
-    @method_decorator(csrf_exempt)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
 
     def form_valid(self, form):
 
@@ -52,31 +46,19 @@ class IndexView(FormView):
 
         phone = form.cleaned_data['phone_number']
         quantity = form.cleaned_data['quantity']
-        code_type = form.cleaned_data['code_type']
-        email = form.cleaned_data['email']
-        pin_code = PinCode.objects.filter(code_type=form.cleaned_data['code_type'], is_used=False).first()
+        code_type = PinCode.objects.filter(code_type=form.cleaned_data['code_type'], is_used=False).first()
 
+        amount = 10000
+        reference = str(uuid.uuid4())
+
+        Payment.objects.create(phone_number=phone, amount=amount, quantity=quantity, reference=reference)
+        initialize_payment(amount, 'tsaatum@outlook.com')
+        verify_payment(reference)
         code_sender = SendSms()
         recipients = [phone]
 
-        message = f'Pin code:{pin_code.pin}, serial_number:{pin_code.serial_number}'
+        message = f'Pin code:{code_type.pin}, serial_number:{code_type.serial_number}'
         sender = settings.SENDER_ID
-        
-        if pin_code:
-            amount = pin_code.price * quantity
-            reference = str(uuid.uuid4())
-            initialize_payment(amount, email)
-            code_sender.send_code(recipients, message, sender)
-            Payment.objects.create(
-                phone_number=phone, 
-                amount=amount, 
-                quantity=quantity, 
-                reference=reference,
-                code_type=code_type
-            )
-            verify_payment(reference)
-            
-        else:
-            return JsonResponse({'message': 'Out of stock'})
+        code_sender.send_code(recipients, message, sender)
 
         return redirect('home')

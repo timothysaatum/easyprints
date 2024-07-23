@@ -33,17 +33,8 @@ body {
     transition: background 0.3s, color 0.3s;
 }
 
-.background-image{
-    .bg-image {
-            background-image: url('main/static/images/ben.jpg');
-            background-size: cover;
-            
-            background-position: center;
-            
-            background-repeat: no-repeat;
-        
-        }
-}
+
+
 
 .dropdown-item:hover {
     background: #3498db;

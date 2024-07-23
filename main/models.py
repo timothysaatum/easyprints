@@ -11,6 +11,7 @@ class PinCode(models.Model):
     code_type = models.CharField(max_length=100, choices=CODE_TYPE)
     pin = models.CharField(max_length=100)
     serial_number = models.CharField(max_length=100)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     is_used = models.BooleanField(default=False)
 
     def __str__(self):
@@ -18,7 +19,7 @@ class PinCode(models.Model):
 
 
 class Payment(models.Model):
-
+    code_type = models.CharField(max_length=50)
     phone_number = models.CharField(max_length=15)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.PositiveSmallIntegerField()

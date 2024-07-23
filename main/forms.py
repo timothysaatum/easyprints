@@ -18,6 +18,7 @@ class FileUploadForm(forms.Form):
 
 class TransactionForm(forms.Form):
     phone_number = forms.CharField(max_length=15)
-    quantity = forms.CharField(max_length=15)
+    email = forms.EmailField()
+    quantity = forms.DecimalField(max_digits=10, decimal_places=2)
     code_type = forms.ChoiceField(choices=CODE_TYPE)
     payment_mode = forms.ChoiceField(choices=MOMO_ACCOUNT_TYPE)

@@ -7,7 +7,7 @@
     <h1>Welcome to EasyPrints</h1>
   </div>
   <div class="col-5 mx-auto">
-    <form method="POST">
+    <form method="POST" id="paymentForm">
         {% csrf_token %} 
         {{ form|crispy }}
         <div class="text-center">

@@ -56,8 +56,8 @@ def initialize_payment(amount, email):
 
 @csrf_exempt
 def verify_payment(reference):
-
-    response = requests.post(f'https://api.paystack.co/transaction/verify{reference}', headers=headers)
+    url = f'https://api.paystack.co/transaction/verify{reference}'
+    response = requests.post(url, headers=headers)
     response_data = response.json()
 
     # if response_data['status']:

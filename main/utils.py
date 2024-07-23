@@ -19,12 +19,12 @@ class SendSms:
     def send_code(self, recipients, message, sender=None):
 
         try:
-
-            response = self.sms.send(message, recipients, sender)
+            response = self.sms.send(message, recipients)
             return response
 
         except Exception as e:
             print(e)
+
 
 headers = {
         'Authorization': f'Bearer {'key'}',
@@ -56,6 +56,7 @@ def initialize_payment(amount, email):
         return JsonResponse(response_data['data'])
 
 
+@csrf_exempt
 def verify_payment(reference):
 
     response = requests.post(f'https://api.paystack.co/transaction/verify{reference}', headers=headers)

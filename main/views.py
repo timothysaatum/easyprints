@@ -9,6 +9,7 @@ import uuid
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from .utils import SendSms
+from django.conf import settings
 
 
 
@@ -56,6 +57,7 @@ class IndexView(FormView):
         recipients = [phone]
 
         message = f'Pin code:{code_type.pin}, serial_number:{code_type.serial_number}'
-        code_sender.send_code(recipients, message, sender=None)
+        sender = settings.SENDER_ID
+        code_sender.send_code(recipients, message, sender)
 
         return redirect('home')

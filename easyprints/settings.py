@@ -102,7 +102,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-# Hubtel settings.py
+# Africastalking settings.py
+SENDER_ID = 'Easyprintz24'
 USERNAME = 'timothysaatum@gmail.com'
 API_KEY = 'atsk_2dec6c8152bd66eaf3cb04b8662ea340d74a532124d791e2f38627fdda9d3cda8b03c484'
 # Internationalization

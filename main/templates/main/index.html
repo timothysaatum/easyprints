@@ -42,36 +42,17 @@
               <div class="modal-body">
                 <form id="modalForm">
                   <label for="phone"
-                    >Enter phone you used to buy the code</label
-                  >
-                  <input
-                    type="text"
-                    name="phone"
-                    id="phone"
-                    class="form-control"
-                  />
+                    >Enter phone you used to buy the code</label>
+                  <input type="text" name="phone" id="phone" class="form-control"/>
                   <label for="date">Enter the date you bought the code</label>
-                  <input
-                    type="date"
-                    name="date"
-                    id="date"
-                    class="form-control"
-                  />
+                  <input type="date" name="date" id="date" class="form-control"/>
                 </form>
               </div>
               <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                >
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                   Close
                 </button>
-                <button
-                  type="button"
-                  class="btn btn-primary"
-                  onclick="submitForm()"
-                >
+                <button type="button" class="btn btn-primary"  onclick="submitForm()">
                   Submit
                 </button>
               </div>
@@ -82,8 +63,7 @@
           <li>
             <div class="step">
               <code
-                >Make sure to enter a correct number and active phone number</code
-              >
+                >Make sure to enter a correct number and active phone number</code>
             </div>
           </li>
           <li>
@@ -100,17 +80,11 @@
       </div>
     </div>
   </div>
-  <!-- <h3 class="text-light text-center text-decoration-underline text-capitalize">
-    Please provide valid details
-  </h3> -->
   <div class="col-12 col-md-6 mx-auto border rounded bg-body shadow p-4 mt-5">
     <form method="POST">
       {% csrf_token %} {{ form|crispy }}
       <div class="text-center">
-        <button
-          class="btn btn-info mb-3 mt-3 px-5 border rounded"
-          type="submit"
-        >
+        <button class="btn btn-info mb-3 mt-3 px-5 border rounded" type="submit">
           Submit
         </button>
       </div>

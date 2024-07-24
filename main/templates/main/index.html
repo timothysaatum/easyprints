@@ -1,64 +1,137 @@
-{% extends 'main/base.html' %}
-{% load static %} {% load crispy_forms_tags %}
-{% block title %}EasyPrints - Home{% endblock title %}
+{% extends 'main/base.html' %} 
+{% load static %} 
+{% load crispy_forms_tags %} 
+{% block title %}EasyPrints - Home{% endblock title %} 
 {% block content %}
 <div class="container mt-5">
-  <div class="mb-5">
-    <h2 class="text-center">Welcome to <span class="text-info">EasyPrintz</span></h2>
-    <p class="text-center">We ensure a <span class="text-info">quick and stress-free experience</span> for purchasing
-      and verifying your <span class="text-info">WASSCE/BECE</span> results. Just enjoy the process</p>
-  </div>
+  <div class="container">
+    <!-- Instructions Section -->
+    <div class="instructions col col-md-7 mx-auto">
+      <h5
+        class="text-light text-decoration-underline text-center text-capitalize"
+      >
+        Provide the following info to enable you purchase and get your checker
+        code instantly
+      </h5>
+      <div>
+        <small class="text-light">Follow these steps to get started:</small>
+        <!-- Button to Open the Modal -->
+        <button
+          type="button"
+          class="btn btn-link btn-link-red"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Click here to retrieve a pin.
+        </button>
 
-  <div class="  p-5">
-    <h4 class="text-center mt-5 mb-4">WHAT WE <span class="text-info">SELL</span></h4>
-
-    <div class="row mt-5 mb-5">
-      <div class="col-sm-4 mb-3 mb-sm-0 mb-5">
-        <div class="card bg-dark text-white">
-          <div class="card-body">
-            <h5 class="card-title">GET WASSCE RESULT CHECKER</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">BUY NOW</a>
+        <!-- The Modal -->
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Retrieve Code</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <form id="modalForm">
+                  <label for="phone"
+                    >Enter phone you used to buy the code</label
+                  >
+                  <input
+                    type="text"
+                    name="phone"
+                    id="phone"
+                    class="form-control"
+                  />
+                  <label for="date">Enter the date you bought the code</label>
+                  <input
+                    type="date"
+                    name="date"
+                    id="date"
+                    class="form-control"
+                  />
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  onclick="submitForm()"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-sm-4 mb-3 mb-sm-0">
-        <div class="card bg-light text-dark">
-          <div class="card-body">
-            <h5 class="card-title">GET BECE RESULT CHECKER</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">BUY NOW</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="card card">
-          <div class="card-body">
-            <h5 class="card-title">SCHOOL PLACEMENT</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">BUY NOW</a>
-          </div>
-        </div>
+        <ol>
+          <li>
+            <div class="step">
+              <code
+                >Make sure to enter a correct number, the code wil be sent via
+                SMS</code
+              >
+            </div>
+          </li>
+          <li>
+            <div class="step">
+              <code>The number of codes you want to buy</code>
+            </div>
+          </li>
+          <li>
+            <div class="step">
+              <code>Select the code type you want to buy</code>
+            </div>
+          </li>
+          <li>
+            <div class="step">
+              <code>Select the payment mode and then click submit.</code>
+            </div>
+          </li>
+        </ol>
       </div>
     </div>
   </div>
-
-  <div class="col-12 col-md-6 mx-auto border rounded p-3 bg-body shadow mt-5">
-    <p class="text-center fs-2">Purchase and Payment Form</p>
+  <h3 class="text-light text-center text-decoration-underline text-capitalize">
+    Please provide valid details
+  </h3>
+  <div class="col-12 col-md-6 mx-auto border rounded bg-body shadow p-4 mt-5">
     <form method="POST">
-      {% csrf_token %}
-      {{ form|crispy }}
+      {% csrf_token %} {{ form|crispy }}
       <div class="text-center">
-        <button class="btn btn-info mb-3 mt-3 px-5 border rounded" type="submit">
+        <button
+          class="btn btn-info mb-3 mt-3 px-5 border rounded"
+          type="submit"
+        >
           Submit
         </button>
       </div>
     </form>
   </div>
-  <div class="m-5 p-5"><h4 class="text-center">About us</h4>
-    <p>At EasyPrintz, we specialize in providing correct and trusted result checker. Purchase result checker online and have them it instantly to your SMS. Your happiness is our top priority. We strive to provide exceptional customer service and support to ensure a seamless
-    experience. EasyPrintz is a name you can trust. We are committed to maintaining transparency, integrity, and reliability in all our
-    dealings.</p>
+  <div class="text-center mt-3">
+    <p class="mb-0 text-light">
+      For any additional questions, please
+      <a href="tel:+233594438287">Contact us.</a>
+    </p>
   </div>
 </div>
 {% endblock content %}

@@ -1,7 +1,7 @@
 from django.shortcuts import redirect
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
-from .forms import FileUploadForm, TransactionForm
+from .forms import FileUploadForm, TransactionForm, RetrieveCodeForm
 from django.urls import reverse_lazy
 import pandas as pd
 from .models import PinCode, Payment
@@ -10,10 +10,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from .utils import SendSms,initialize_payment, verify_payment
 from django.conf import settings
+from decimal import Decimal
 
 
 
-class MakePaymentView(TemplateView):
+class RetrieveCode(FormView):
     template_name = 'main/index.html'
 
 
@@ -45,20 +46,39 @@ class IndexView(FormView):
     def form_valid(self, form):
 
         phone = form.cleaned_data['phone_number']
+        print(phone)
         quantity = form.cleaned_data['quantity']
-        code_type = PinCode.objects.filter(code_type=form.cleaned_data['code_type'], is_used=False).first()
-
-        amount = 10000
+        email = 'easyprintz@gmail.com'
         reference = str(uuid.uuid4())
 
-        Payment.objects.create(phone_number=phone, amount=amount, quantity=quantity, reference=reference)
-        initialize_payment(amount, 'tsaatum@outlook.com')
-        verify_payment(reference)
-        code_sender = SendSms()
-        recipients = [phone]
+        pin_code = PinCode.objects.filter(code_type=form.cleaned_data['code_type'], is_used=False).first()
+        if pin_code:
+            amount = Decimal(quantity) * pin_code.price
+            try:
+                initialize_payment(amount, email)
+                verify_payment(reference)
+                Payment.objects.create(
+                    phone_number=phone, 
+                    amount=amount, 
+                    quantity=quantity,
+                    email=email, 
+                    reference=reference
+                )
+                code_sender = SendSms()
+                recipients = [phone]
 
-        message = f'Pin code:{code_type.pin}, serial_number:{code_type.serial_number}'
-        sender = settings.SENDER_ID
-        code_sender.send_code(recipients, message, sender)
+                message = f'Pin code:{pin_code.pin}, serial_number:{pin_code.serial_number}'
+                sender = settings.SENDER_ID
+                code_sender.send_code(recipients, message, sender)
+            except Exception as e:
+                print(e)
 
         return redirect('home')
+
+
+class About(TemplateView):
+    template_name = 'main/about.html'
+
+
+class Services(TemplateView):
+    template_name = 'main/services.html'

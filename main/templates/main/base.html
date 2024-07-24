@@ -1,9 +1,6 @@
 {% load static %}
-
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -16,24 +13,27 @@
 </head>
 
 <body class="background-image">
-  <nav class="navbar navbar-expand-lg w-75 text-bg-info rounded  mx-auto mt-4">
+ <div class="container">
+   <nav class="navbar navbar-expand-lg text-bg-primary rounded  mx-auto mt-4">
     <div class="container-fluid">
-      <a class="navbar-brand ms-3" href="#">EasyPrintz Service</a>
+      <a class="navbar-brand ms-3" href="{% url 'home' %}">EasyPrintz</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav  ms-auto">
+          <!-- <li class="nav-item me-4">
+            <a class="nav-link active" aria-current="page" href="{% url 'services' %}">Services</a>
+          </li> -->
           <li class="nav-item me-4">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link" href="{% url 'home' %}">Home</a>
           </li>
           <li class="nav-item me-4">
-            <a class="nav-link" href="#">About Us</a>
+            <a class="nav-link" href="{% url 'about' %}">About Us</a>
           </li>
           <li class="nav-item me-4">
-            <a class="nav-link" href="#">Contact us</a>
+            <a class="nav-link" href="tel:+233594438287">Contact us</a>
           </li>
 
         </ul>
@@ -41,21 +41,21 @@
 
     </div>
   </nav>
-  {% block navbar %} {% endblock navbar %} 
+ </div>
   {% block content %}
-  <h1>Booking Page</h1>
+  
   {% endblock content %}
 
 {% block footer %}
-<footer class="text-center mt-4">
+<hr>
+<footer class="text-center mt-4 text-light">
   <div>
-    <i class="fa-brands fa-whatsapp"></i>
-    <i class="fa-brands fa-facebook"></i>
-    <i class="fa-brands fa-x-twitter"></i>
-    <i class="fa-solid fa-phone"></i>
+    <i class="fa-brands fa-whatsapp text-light"></i>
+    <i class="fa-brands fa-facebook text-light"></i>
+    <i class="fa-brands fa-x-twitter text-light"></i>
+    <i class="fa-solid fa-phone text-light"></i>
   </div>
-  <p>&copy; 2024 EasyPrintz. All rights reserved.</p>
-  
+  <p>&copy; 2024 EasyPrintz. All rights reserved and reserve.</p>
 </footer>
 {% endblock footer %}
 
@@ -65,5 +65,4 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="{% static 'main/style.js' %}"></script>
 </body>
-
 </html>

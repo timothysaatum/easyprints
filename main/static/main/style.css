@@ -1,12 +1,16 @@
 body {
-    font-family: 'Roboto', sans-serif;
-    
+    font-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #060654f3;
 }
-
 
 .navbar-custom {
     background-color: #1473d3;
     padding: 1rem;
+}
+
+.bg-primary{
+    background-color: #060654f3 !important;
+    color: white !important;
 }
 
 .navbar-brand {
@@ -86,4 +90,78 @@ transform: scale(1.15);
 
 .navbar {
     padding-left: 0;
+}
+/*usage instruction*/
+.instructions {
+    margin: 20px 0;
+}
+
+.step {
+    margin-bottom: 20px;
+}
+ol {
+    list-style: none;
+    /* Remove default list styling */
+    counter-reset: list-counter;
+    /* Create a counter */
+}
+
+ol li {
+    counter-increment: list-counter;
+    /* Increment the counter */
+    position: relative;
+    /* Position relative for absolute positioning */
+    padding-left: 2em;
+    /* Space for the number */
+}
+
+ol li::before {
+    content: counter(list-counter) ". ";
+    /* Add the number before the list item */
+    position: absolute;
+    /* Position the number absolutely */
+    left: 0;
+    /* Align to the left */
+    color: rgb(232, 223, 223);
+    /* Change color here */
+}
+
+.btn-link-red {
+    color: red;
+}
+
+.btn-link-red:hover {
+    color: darkred;
+}
+
+.about-section {
+    padding: 60px 0;
+}
+
+.about-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.about-content {
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.services-section {
+    padding: 60px 0;
+}
+
+.service-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.service-content {
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.service-item {
+    margin-bottom: 30px;
 }

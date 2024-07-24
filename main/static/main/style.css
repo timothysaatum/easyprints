@@ -8,6 +8,11 @@ body {
     padding: 1rem;
 }
 
+.bg-primary{
+    background-color: #060654f3 !important;
+    color: white !important;
+}
+
 .navbar-brand {
     font-weight: bold;
     font-size: 1.5rem;

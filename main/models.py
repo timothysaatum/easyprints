@@ -13,8 +13,9 @@ class PinCode(models.Model):
     pin = models.CharField(max_length=100)
     serial_number = models.CharField(max_length=100)
     is_used = models.BooleanField(default=False)
+    created_at = models.DateField(auto_now=True)
 
-    def __str__(self):
+    def __str__(self)->str:
         return self.code_type
 
 
@@ -26,6 +27,7 @@ class Payment(models.Model):
     quantity = models.PositiveSmallIntegerField()
     reference = models.CharField(max_length=100, unique=True)
     is_successful = models.BooleanField(default=False)
+    created_at = models.DateField(auto_now=True)
 
-    def __str__(self):
+    def __str__(self)->str:
         return self.phone_number

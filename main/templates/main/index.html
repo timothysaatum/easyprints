@@ -7,12 +7,6 @@
   <div class="container">
     <!-- Instructions Section -->
     <div class="instructions col col-md-7 mx-auto">
-      <!-- <h5
-        class="text-light text-decoration-underline text-center text-capitalize"
-      >
-        Provide the following info to enable you purchase and get your checker
-        code instantly
-      </h5> -->
       <p class="lead text-light">Quick and easy way to purchase WAEC result and school placement checker pins.</p>
       <div>
         <small class="text-light">Follow these steps to get started:</small>
@@ -88,19 +82,13 @@
           <li>
             <div class="step">
               <code
-                >Make sure to enter a correct number, the code wil be sent via
-                SMS</code
+                >Make sure to enter a correct number and active phone number</code
               >
             </div>
           </li>
           <li>
             <div class="step">
-              <code>The number of codes you want to buy</code>
-            </div>
-          </li>
-          <li>
-            <div class="step">
-              <code>Select the code type you want to buy</code>
+              <code>The number of codes you want to buy & Select the code type you want to buy</code>
             </div>
           </li>
           <li>
@@ -112,9 +100,9 @@
       </div>
     </div>
   </div>
-  <h3 class="text-light text-center text-decoration-underline text-capitalize">
+  <!-- <h3 class="text-light text-center text-decoration-underline text-capitalize">
     Please provide valid details
-  </h3>
+  </h3> -->
   <div class="col-12 col-md-6 mx-auto border rounded bg-body shadow p-4 mt-5">
     <form method="POST">
       {% csrf_token %} {{ form|crispy }}

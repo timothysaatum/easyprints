@@ -45,10 +45,10 @@ class IndexView(FormView):
 
     def form_valid(self, form):
 
-        phone = form.cleaned_data['phone_number']
+        phone = str(form.cleaned_data['phone_number'])
         print(phone)
         quantity = form.cleaned_data['quantity']
-        email = 'easyprintz@gmail.com'
+        email = 'easyprintzservices@gmail.com'
         reference = str(uuid.uuid4())
 
         pin_code = PinCode.objects.filter(code_type=form.cleaned_data['code_type'], is_used=False).first()
@@ -64,6 +64,7 @@ class IndexView(FormView):
                     email=email, 
                     reference=reference
                 )
+                
                 code_sender = SendSms()
                 recipients = [phone]
 

@@ -3,116 +3,149 @@
 {% load crispy_forms_tags %} 
 {% block title %}EasyPrints - Home{% endblock title %} 
 {% block content %}
-<div class="container mt-5">
-  <div class="container">
-    <!-- Instructions Section -->
-    <div class="instructions col col-md-7 mx-auto">
-      <p class="lead text-light">Quick and easy way to purchase WAEC result and school placement checker pins.</p>
-      <div>
-        <small class="text-light">Follow these steps to get started:</small>
-        <!-- Button to Open the Modal -->
-        <button
-          type="button"
-          class="btn btn-link btn-link-red"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Click here to retrieve a pin.
-        </button>
+<main>
+  <div class="container mt-5">
+    <h1 class="mb-4 text-center text-primary">
+      WAEC and School Placement Checker Pin Codes
+    </h1>
+    <p class="text-center mb-4">
+      A quick and easy way to purchase WAEC and School placement checker pins.
+    </p>
 
-        <!-- The Modal -->
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Retrieve Code</h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body">
-                <form id="modalForm">
-                  <label for="phone"
-                    >Enter phone you used to buy the code</label
-                  >
-                  <input
-                    type="text"
-                    name="phone"
-                    id="phone"
-                    class="form-control"
-                  />
-                  <label for="date">Enter the date you bought the code</label>
-                  <input
-                    type="date"
-                    name="date"
-                    id="date"
-                    class="form-control"
-                  />
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                >
-                  Close
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-primary"
-                  onclick="submitForm()"
-                >
-                  Submit
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <ol>
-          <li>
-            <div class="step">
-              <code
-                >Make sure to enter a correct number and active phone number</code
-              >
-            </div>
-          </li>
-          <li>
-            <div class="step">
-              <code>The number of codes you want to buy & Select the code type you want to buy</code>
-            </div>
-          </li>
-        </ol>
-      </div>
+    <div class="text-center mb-4">
+      <button
+        type="button"
+        class="btn btn-primary me-2"
+        data-bs-toggle="modal"
+        data-bs-target="#instructionsModal"
+      >
+        View Instructions
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary"
+        data-bs-toggle="modal"
+        data-bs-target="#retrievePinModal"
+      >
+        Retrieve Pin
+      </button>
     </div>
-  </div>
-  <div class="col-12 col-md-6 mx-auto border rounded bg-body shadow p-4 mt-5">
+
     <form method="POST">
-      {% csrf_token %} {{ form|crispy }}
+      {% csrf_token %}
+      <div class="container">
+        <div class="col-md-6 mx-auto">
+          {{form|crispy}}
+        </div>
+      </div>
       <div class="text-center">
-        <button
-          class="btn btn-info mb-3 mt-3 px-5 border rounded"
-          type="submit"
-        >
-          Submit
+        <button type="submit" class="btn btn-primary btn-md">
+          Click to Buy
         </button>
       </div>
     </form>
   </div>
-  <div class="text-center mt-3">
-    <p class="mb-0 text-light">
-      For any additional questions, please
-      <a href="tel:+233594438287">Contact us.</a>
-    </p>
+</main>
+<!-- Instructions Modal -->
+<div
+  class="modal fade"
+  id="instructionsModal"
+  tabindex="-1"
+  aria-labelledby="instructionsModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-primary" id="instructionsModalLabel">
+          Steps to Make an Order
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <ol>
+          <li>Fill out the order form below with your personal details.</li>
+          <li>
+            Select the type of pin you need (WAEC or School Placement Checker).
+          </li>
+          <li>Specify the quantity of pins you want to purchase.</li>
+          <li>Provide a valid phone number to receive your pin(s).</li>
+          <li>Review your order details before submission.</li>
+          <li>Click the "Submit" button to complete your purchase.</li>
+          <li>
+            You will receive your code instanly via sms.
+          </li>
+        </ol>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
   </div>
 </div>
+
+<!-- Retrieve Pin Modal -->
+<div
+  class="modal fade"
+  id="retrievePinModal"
+  tabindex="-1"
+  aria-labelledby="retrievePinModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-primary" id="retrievePinModalLabel">
+          Retrieve Your Pin
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" id="retrievePinForm">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="retrievePhone" class="form-label">Phone Number</label>
+            <input
+              type="tel"
+              class="form-control"
+              id="retrievePhone"
+              required
+              placeholder="Enter the number you used to buy the pin"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="purchaseDate" class="form-label"
+              >Date of Purchase</label
+            >
+            <input
+              type="date"
+              class="form-control"
+              id="purchaseDate"
+              required
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Retrieve Pin</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock content %}

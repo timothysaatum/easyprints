@@ -1,14 +1,95 @@
+:root {
+    --primary-color: #003366;
+    /* Darker blue */
+    --secondary-color: #ffffff;
+    /* White */
+    --accent-color: #c41e3a;
+    /* Crimson red */
+}
+
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--secondary-color);
+    color: #333;
+}
+
+main {
+    flex: 1;
+}
+
+.navbar {
+    background-color: var(--primary-color) !important;
+}
+
+.navbar-brand,
+.nav-link {
+    color: var(--secondary-color) !important;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.btn-primary:hover {
+    background-color: #a3172f;
+    border-color: #a3172f;
+}
+
+.btn-secondary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background-color: #002244;
+    border-color: #002244;
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.social-icons a {
+    color: var(--secondary-color);
+    font-size: 1.5rem;
+    margin: 0 10px;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 0.25rem rgba(196, 30, 58, 0.25);
+}
+
+h1.text-primary {
+    color: var(--accent-color) !important;
+}
+
+.modal-title.text-primary {
+    color: var(--accent-color) !important;
+}
+
+.card {
+    border-color: var(--primary-color);
+}
+
+.card-header {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+/* body {
     font-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif;
     background-color: #060654f3;
-}
+} */
 
 .navbar-custom {
     background-color: #1473d3;
     padding: 1rem;
 }
-
-
 
 .btn-info{
     background-color: #060654f3 !important;
@@ -27,7 +108,7 @@ body {
 }
 
 .nav-link:hover {
-    color: #020202 !important;
+    color: #beadad !important;
 }
 
 .nav-item.dropdown .dropdown-menu {
@@ -39,11 +120,9 @@ body {
 transition: all 0.3s;
 }
 
-.card:hover{
+/* .card:hover{
 transform: scale(1.15);
-}
-
-
+} */
 
 .dropdown-item:hover {
     background: #3498db;

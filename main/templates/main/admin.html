@@ -1,140 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .dashboard {
-            margin: 20px;
-        }
-        .card {
-            margin-bottom: 20px;
-        }
-        .sidebar {
-            height: 100%;
-        }
-    </style>
-</head>
-<body>
-    <div class="container-fluid dashboard">
-        <div class="row">
-            <nav id="sidebar" class="col-md-3 sidebar bg-light collapse show">
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action active">Dashboard</a>
-                    <a href="#" class="list-group-item list-group-item-action">Products</a>
-                    <a href="#" class="list-group-item list-group-item-action">Orders</a>
-                    <a href="#" class="list-group-item list-group-item-action">Customers</a>
-                    <a href="#" class="list-group-item list-group-item-action">Reports</a>
-                    <a href="#" class="list-group-item list-group-item-action">Settings</a>
-                </div>
-            </nav>
-            <div class="col-md-9">
-                <button class="btn btn-primary mb-3" id="sidebarToggle">Toggle Sidebar</button>
-                <div class="card">
-                    <div class="card-header">
-                        Dashboard Overview
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="alert alert-primary" role="alert">
-                                    Today Order: $0
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="alert alert-success" role="alert">
-                                    This Month: $8123.15
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="alert alert-info" role="alert">
-                                    Total Order: $25603.30
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        Recent Orders
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Order Time</th>
-                                    <th>Delivery Address</th>
-                                    <th>Phone</th>
-                                    <th>Payment Method</th>
-                                    <th>Order Amount</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Dec 27, 2022</td>
-                                    <td>Address 1</td>
-                                    <td>0123456789</td>
-                                    <td>COD</td>
-                                    <td>$100</td>
-                                    <td>Pending</td>
-                                </tr>
-                                <!-- Add more rows as needed -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        File Upload
-                    </div>
-                    <div class="card-body">
-                        <form id="fileUploadForm" method="POST" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <label for="fileInput">Choose file</label>
-                                <input type="file" class="form-control-file" id="fileInput" name="file">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Upload</button>
-                        </form>
-                        <div id="uploadStatus"></div>
-                    </div>
-                </div>
-            </div>
+{% extends 'main/base.html' %} 
+{% load static %} 
+{% load crispy_forms_tags %} 
+{% block title %}EasyPrintz - Admin{% endblock title %} 
+{% block content %}
+<main class="container mt-5">
+  <h1 class="mb-4">Admin Dashboard</h1>
+
+  <div class="row">
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Total Orders</h5>
         </div>
+        <div class="card-body">
+          <h2 class="card-text">254</h2>
+        </div>
+      </div>
     </div>
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Pending Orders</h5>
+        </div>
+        <div class="card-body">
+          <h2 class="card-text">15</h2>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Total Revenue</h5>
+        </div>
+        <div class="card-body">
+          <h2 class="card-text">$12,580</h2>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#sidebarToggle').on('click', function() {
-                $('#sidebar').toggleClass('show');
-            });
-
-            $('#fileUploadForm').on('submit', function(e) {
-                e.preventDefault();
-                var formData = new FormData(this);
-
-                $.ajax({
-                    url: '/', // Django URL for file upload view
-                    type: 'POST',
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    success: function(response) {
-                        $('#uploadStatus').html('<p class="alert alert-success">' + response.message + '</p>');
-                    },
-                    error: function(response) {
-                        $('#uploadStatus').html('<p class="alert alert-danger">' + response.responseJSON.message + '</p>');
-                    }
-                });
-            });
-        });
-    </script>
-</body>
-</html>
+  <div class="card mt-4">
+    <div class="card-header">
+      <h5 class="card-title mb-0">Recent Orders</h5>
+    </div>
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Customer</th>
+            <th>Pin Type</th>
+            <th>Quantity</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1001</td>
+            <td>John Doe</td>
+            <td>WAEC</td>
+            <td>2</td>
+            <td><span class="badge bg-warning">Pending</span></td>
+          </tr>
+          <tr>
+            <td>1002</td>
+            <td>Jane Smith</td>
+            <td>School Placement</td>
+            <td>1</td>
+            <td><span class="badge bg-success">Completed</span></td>
+          </tr>
+          <tr>
+            <td>1003</td>
+            <td>Mike Johnson</td>
+            <td>WAEC</td>
+            <td>3</td>
+            <td><span class="badge bg-warning">Pending</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+{% endblock content %}

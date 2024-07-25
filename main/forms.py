@@ -24,7 +24,7 @@ class TransactionForm(forms.Form):
         region='GH',
         widget=forms.TextInput(
             attrs={
-                'placeholder': 'Enter a valid phone number (+233...)'
+                'placeholder': 'Enter a valid phone number (+233594438287)'
             }
         )
     )

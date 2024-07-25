@@ -8,6 +8,9 @@ $(document).ready(
         $("#content").css("margin-left", "250px");
       }
     });
+    $("#toggleSidebar").on("click", function () {
+      $(".sidebar").toggleClass("toggled");
+    });
   },
   function submitForm() {
     const name = document.getElementById("name").value;
@@ -22,5 +25,6 @@ $(document).ready(
       document.getElementById("exampleModal")
     );
     modal.hide();
-  }
+  },
+  
 );

@@ -18,7 +18,7 @@ class RetrieveCode(FormView):
     template_name = 'main/index.html'
 
 
-class UploadFileView(FormView):
+class AdminView(FormView):
 
     template_name = 'main/admin.html'
     form_class = FileUploadForm

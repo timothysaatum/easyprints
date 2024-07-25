@@ -33,6 +33,9 @@
             <a class="nav-link" href="{% url 'about' %}">About Us</a>
           </li>
           <li class="nav-item me-4">
+            <a class="nav-link" href="{% url 'services' %}">Services</a>
+          </li>
+          <li class="nav-item me-4">
             <a class="nav-link" href="tel:+233594438287">Contact us</a>
           </li>
 
@@ -49,11 +52,22 @@
 {% block footer %}
 <hr>
 <footer class="text-center mt-4 text-light">
-  <div>
-    <i class="fa-brands fa-whatsapp text-light"></i>
-    <i class="fa-brands fa-facebook text-light"></i>
-    <i class="fa-brands fa-x-twitter text-light"></i>
-    <i class="fa-solid fa-phone text-light"></i>
+  <div class="mb-3">
+    <a href="" target="_blank">
+      <i class="fa-brands fa-whatsapp text-light fa-2x mx-3"></i>
+    </a>
+    <a href="" target="_blank">
+      <i class="fa-brands fa-facebook text-light fa-2x  mx-3"></i>
+    </a>
+    
+    <a href="" target="_blank">
+      <i class="fa-brands fa-x-twitter text-light fa-2x  mx-3"></i>
+    </a>
+    
+    <a href="" target="_blank">
+      <i class="fa-solid fa-phone text-light fa-2x  mx-3"></i>
+    </a>
+    
   </div>
   <p>&copy; 2024 EasyPrintz. All rights reserved and reserve.</p>
 </footer>

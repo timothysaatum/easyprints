@@ -81,6 +81,11 @@ h1.text-primary {
     background-color: var(--primary-color);
     color: var(--secondary-color);
 }
+
+#totalPrice {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
 /* body {
     font-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif;
     background-color: #060654f3;

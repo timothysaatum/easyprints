@@ -1,30 +1,21 @@
-$(document).ready(
-  function () {
-    $("#sidebarToggle").on("click", function () {
-      $("#sidebar").toggleClass("d-none");
-      if ($("#sidebar").hasClass("d-none")) {
-        $("#content").css("margin-left", "0");
-      } else {
-        $("#content").css("margin-left", "250px");
-      }
-    });
-    $("#toggleSidebar").on("click", function () {
-      $(".sidebar").toggleClass("toggled");
-    });
-  },
-  function submitForm() {
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const message = document.getElementById("message").value;
+$(document).ready(function () {
+  function updateDisplay() {
+    const currencySymbol = 'GHS';
+    var inputValue = parseFloat($("#id_quantity").val()) || 0;
+    var codeType = $("#id_code_type").val();
+    var multiplier = 1;
 
-    // Perform your form submission logic here
-    console.log("Form submitted:", { name, email, message });
-
-    // Close the modal after submission
-    const modal = bootstrap.Modal.getInstance(
-      document.getElementById("exampleModal")
-    );
-    modal.hide();
-  },
-  
-);
+    if (codeType === 'WASSCE') {
+      multiplier = 15;
+    } else if (codeType === 'BECE') {
+      multiplier = 10;
+    } else if (codeType === 'SHS PLACEMENT CODES') {
+      multiplier = 20;
+    }
+    var result = inputValue * multiplier
+    console.log(multiplier);
+    $("#totalPrice").text(currencySymbol + result.toFixed(2));
+  }
+  $('#id_quantity').on('input', updateDisplay);
+  $("#id_code_type").on("input", updateDisplay);
+});

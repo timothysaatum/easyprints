@@ -31,11 +31,15 @@
       </button>
     </div>
 
-    <form method="POST" class="fw-bold">
+    <form id="orderForm" method="POST" class="fw-bold">
       {% csrf_token %}
       <div class="container">
         <div class="col-md-6 mx-auto">
           {{form|crispy}}
+          <div class="mb-3 text-danger">
+            <label for="totalPrice" class="form-label">Total Price:</label>
+              <div id="totalPrice"></div>
+            </div>
         </div>
       </div>
       <div class="text-center">

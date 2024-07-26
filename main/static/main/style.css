@@ -208,11 +208,11 @@ ol li::before {
 }
 
 .btn-link-red {
-    color: red;
+    color: #008080;
 }
 
 .btn-link-red:hover {
-    color: darkred;
+    color: #008080;
 }
 
 .about-section {

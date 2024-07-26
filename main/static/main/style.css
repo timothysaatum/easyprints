@@ -34,8 +34,8 @@ main {
 }
 
 .btn-primary:hover {
-    background-color: #a3172f;
-    border-color: #a3172f;
+    background-color: #008080;
+    border-color: #008080;
 }
 
 .btn-secondary {
@@ -214,6 +214,11 @@ ol li::before {
 .btn-link-red:hover {
     color: #008080;
 }
+
+/*.instru-pin-btn{
+    display: inline-flex;
+}
+*/
 
 .about-section {
     padding: 60px 0;

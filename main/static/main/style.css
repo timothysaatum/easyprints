@@ -1,9 +1,9 @@
 :root {
-    --primary-color: #003366;
+    --primary-color: #800080;
     /* Darker blue */
     --secondary-color: #ffffff;
     /* White */
-    --accent-color: #c41e3a;
+    --accent-color: #008080;
     /* Crimson red */
 }
 

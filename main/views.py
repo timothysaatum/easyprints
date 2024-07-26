@@ -46,7 +46,7 @@ class IndexView(FormView):
     def form_valid(self, form):
 
         phone = str(form.cleaned_data['phone_number'])
-        print(phone)
+        # print(phone)
         quantity = form.cleaned_data['quantity']
         email = 'easyprintzservices@gmail.com'
         reference = str(uuid.uuid4())
@@ -55,8 +55,9 @@ class IndexView(FormView):
         if pin_code:
             amount = Decimal(quantity) * pin_code.price
             try:
-                initialize_payment(amount, email)
-                verify_payment(reference)
+                initialize_payment(amount, email, reference)
+                # print(pay.data)
+                # verify_payment(reference)
                 Payment.objects.create(
                     phone_number=phone, 
                     amount=amount, 
@@ -64,7 +65,7 @@ class IndexView(FormView):
                     email=email, 
                     reference=reference
                 )
-                
+
                 code_sender = SendSms()
                 recipients = [phone]
 
@@ -72,7 +73,7 @@ class IndexView(FormView):
                 sender = settings.SENDER_ID
                 code_sender.send_code(recipients, message, sender)
             except Exception as e:
-                print(e)
+                print(f'Error: {e}')
 
         return redirect('home')
 

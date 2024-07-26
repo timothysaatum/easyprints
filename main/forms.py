@@ -31,7 +31,7 @@ class TransactionForm(forms.Form):
     
     quantity = forms.IntegerField(
         initial=1,
-        help_text='Enter number of codes you want to but E.g 10',
+        help_text='Enter number of codes you want to buy E.g 10',
     )
     code_type = forms.ChoiceField(choices=CODE_TYPE)
     payment_mode = forms.ChoiceField(choices=MOMO_ACCOUNT_TYPE)
